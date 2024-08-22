@@ -5,7 +5,7 @@ namespace Model.Validacao
     internal class ValidacaoTemperatura : ValidationAttribute
     {
         //ErrorMessage
-        public ValidacaoTemperatura() : base("{0} não é uma unidade de temperatura válida!")
+        public ValidacaoTemperatura() : base($"{0} não é uma unidade de temperatura válida!")
         { }
 
         //Se  a temperatura estiver entre C, F e K, será uma temperatura valida
@@ -15,7 +15,7 @@ namespace Model.Validacao
 
             bool valido = unidade == "C" || unidade == "F" || unidade == "K";
 
-            if (!valido)
+            if (valido)
                 return null;
 
             return new ValidationResult(base.FormatErrorMessage(validationContext.MemberName)

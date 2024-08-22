@@ -1,0 +1,6 @@
+@TemperaturaAPI_HostAddress = http://localhost:5168
+
+GET {{TemperaturaAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

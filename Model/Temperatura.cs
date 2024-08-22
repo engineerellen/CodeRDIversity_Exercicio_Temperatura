@@ -15,14 +15,10 @@ namespace Model
         [ValidacaoTemperatura]
         public string Unidade { get; set; } = "C";
 
-        public Temperatura()
-        {
 
-        }
-
-        public string CalcularTemperatura(double temp, string unidade)
+        public string CalcularTemperatura()
         {
-            var temper = ConvertToCelsius(temp, unidade);
+            var temper = ConvertToCelsius();
 
             if (temper <= 0)
                 return "Congelando";
@@ -36,24 +32,27 @@ namespace Model
             if (temper > 21 && temper < 28)
                 return "Calor";
 
-            if (temper > 28)
+            if (temper > 28 && temper < 40)
                 return "Derretendo";
 
-            return "temperatura inválida!";
+            if (temper > 40)
+                return "O mundo já era Jesus ja pode voltar!";
+
+            return "Temperatura inválida!";
         }
 
-        private double ConvertToCelsius(double temp, string unidade)
+        private double ConvertToCelsius()
         {
-            switch (unidade)
+            switch (Unidade)
             {
                 case "C":
-                    return temp;
+                    return ValorTemperatura;
 
                 case "F":
-                    return (temp - 32) * 5 / 9;
+                    return (ValorTemperatura - 32) * 5 / 9;
 
                 case "K":
-                    return temp - 273.15;
+                    return ValorTemperatura - 273.15;
 
                 default:
                     throw new Exception("Unidade de temperatura inválida!");
